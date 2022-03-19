@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Card, CardText, CardImg } from 'reactstrap';
 import dateFormat from 'dateformat';
-import { STAFFS } from '../shared/staffs';
 
 class StaffList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            staffs : STAFFS,
             detailStaff : null,
             defaultColumn : "col-lg-4 col-md-6 col-xs-12"
         }
@@ -38,7 +36,7 @@ class StaffList extends Component {
         }
     }
     render() {
-        var list = this.state.staffs.map((staff) => {
+        var list = this.props.staffs.map((staff) => {
             return (
                 <div className={this.state.defaultColumn}>
                     <Card key={staff.id} onClick={() => {this.detailStaff(staff)}}>

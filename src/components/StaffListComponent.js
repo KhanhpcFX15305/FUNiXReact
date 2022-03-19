@@ -8,12 +8,18 @@ class StaffList extends Component {
         super(props);
         this.state = {
             staffs : STAFFS,
-            detailStaff : null
+            detailStaff : null,
+            defaultColumn : "col-lg-4 col-md-6 col-xs-12"
         }
     }
     detailStaff(nv) {
         this.setState({
             detailStaff : nv
+        });
+    }
+    changeColumn(col) {
+        this.setState({
+            defaultColumn : col
         });
     }
     renderDetail(nv) {
@@ -34,7 +40,7 @@ class StaffList extends Component {
     render() {
         var list = this.state.staffs.map((staff) => {
             return (
-                <div className="col-lg-4 col-md-6 col-xs-12">
+                <div className={this.state.defaultColumn}>
                     <Card key={staff.id} onClick={() => {this.detailStaff(staff)}}>
                         <CardText>{staff.name}</CardText>
                     </Card>     
@@ -43,6 +49,12 @@ class StaffList extends Component {
         });
         return (
         <div>
+            <div className="col-lg-12">
+                <button onClick={() => this.changeColumn("col-lg-12")} class="btn btn-dark">1 Cột</button>
+                <button onClick={() => this.changeColumn("col-lg-6")} class="btn btn-dark">2 Cột</button>
+                <button onClick={() => this.changeColumn("col-lg-3")} class="btn btn-dark">4 Cột</button>
+                <button onClick={() => this.changeColumn("col-lg-2")} class="btn btn-dark">6 Cột</button>
+            </div>
             <div className="row">
                 {list}
             </div>
